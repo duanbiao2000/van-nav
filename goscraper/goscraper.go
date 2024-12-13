@@ -198,6 +198,7 @@ func (scraper *Scraper) parseDocument(doc *Document) error {
 			headPassed = true
 
 		case "link":
+// 声明一个布尔变量，用于表示是否使用规范化的URL
 			var canonical bool
 			var hasIcon bool
 			var href string
@@ -297,6 +298,7 @@ func (scraper *Scraper) parseDocument(doc *Document) error {
 			}
 		}
 
+		// 如果有规范化的URL，并且头文件已经通过，并且最大重定向次数大于0
 		if hasCanonical && headPassed && scraper.MaxRedirect > 0 {
 			if !canonicalUrl.IsAbs() {
 				absCanonical, err := url.Parse(fmt.Sprintf("%s://%s%s", scraper.Url.Scheme, scraper.Url.Host, canonicalUrl.Path))
